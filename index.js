@@ -1,13 +1,19 @@
 import express from "express";
 import "./db.js";
 
+import taskRouter from "./routes/task.router.js";
+
 const app = express();
+
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.json({ message: "Bienvenido a la API" });
 });
 
-const PORT = process.env.PORT || 3001;
+app.use("/task", taskRouter);
+
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);

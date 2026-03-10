@@ -2,11 +2,18 @@ import { Router } from "express";
 
 const router = Router();
 
-import Task from "../models/Task.js";
+import {
+  createTask,
+  getTask,
+  getTaskById,
+  updateTask,
+  deleteTask,
+} from "../controllers/task.controller.js";
 
-router.get("/task", async (req, res) => {
-  const tasks = await Task.find();
-  res.json(tasks);
-});
+router.post("/", createTask);
+router.get("/", getTask);
+router.get("/:id", getTaskById);
+router.put("/:id", updateTask);
+router.delete("/:id", deleteTask);
 
 export default router;
